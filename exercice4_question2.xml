@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+int tampon;
+const int nbGirls = 6;
+typedef int[0,nbGirls-1] girl;
+
+chan appel, reponse;
+</declaration>
+	<template>
+		<name x="5" y="5">Girl</name>
+		<parameter>const girl num</parameter>
+		<declaration>// Place local declarations here.
+int secret = 1 &lt;&lt; num; //Décalage binaire
+
+void read() {
+    secret = tampon | secret;
+}
+void write() {
+    tampon = secret;
+}</declaration>
+		<location id="id0" x="-306" y="-34">
+			<committed/>
+		</location>
+		<location id="id1" x="102" y="-34">
+			<committed/>
+		</location>
+		<location id="id2" x="-102" y="-34">
+		</location>
+		<init ref="id2"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-374" y="8">reponse!</label>
+			<label kind="assignment" x="-357" y="25">write()</label>
+			<nail x="-204" y="68"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-314" y="-127">appel?</label>
+			<label kind="assignment" x="-314" y="-110">read()</label>
+			<nail x="-204" y="-136"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="76" y="8">reponse?</label>
+			<label kind="assignment" x="76" y="25">read()</label>
+			<nail x="0" y="68"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="42" y="-136">appel!</label>
+			<label kind="assignment" x="42" y="-119">write()</label>
+			<nail x="0" y="-136"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+//Process = Girl();
+// List one or more processes to be composed into a system.
+system Girl;
+    </system>
+	<queries>
+		<query>
+			<formula>E&lt;&gt;forall(x: girl) Girl(x).secret == ((1 &lt;&lt; nbGirls)-1 )
+			</formula>
+			<comment>
+			</comment>
+		</query>
+	</queries>
+</nta>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+int tampon;
+chan AappelB, AappelC;
+chan BappelA, BappelC;
+chan CappelA, CappelB;
+chan ArepasseB, ArepasseC;
+chan BrepasseA, BrepasseC;
+chan CrepasseA, CrepasseB;</declaration>
+	<template>
+		<name x="5" y="5">PersonA</name>
+		<declaration>// Place local declarations here.
+int secret;</declaration>
+		<location id="id0" x="-510" y="-136">
+		</location>
+		<location id="id1" x="-510" y="68">
+		</location>
+		<location id="id2" x="-306" y="68">
+		</location>
+		<location id="id3" x="-306" y="-136">
+		</location>
+		<location id="id4" x="-408" y="-34">
+		</location>
+		<init ref="id4"/>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-552" y="-17">CappelA?</label>
+			<nail x="-476" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-484" y="51">ArepasseC!</label>
+			<nail x="-442" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-399" y="51">AappelC!</label>
+			<nail x="-374" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-331" y="0">CrepasseA?</label>
+			<nail x="-340" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-323" y="-93">AappelB!</label>
+			<nail x="-340" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-408" y="-144">BrepasseA?</label>
+			<nail x="-374" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-569" y="-85">ArepasseB!</label>
+			<nail x="-476" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-476" y="-136">BappelA?</label>
+			<nail x="-442" y="-102"/>
+		</transition>
+	</template>
+	<template>
+		<name>PersonB</name>
+		<declaration>// Place local declarations here.
+int secret;</declaration>
+		<location id="id5" x="-68" y="-34">
+		</location>
+		<location id="id6" x="-170" y="68">
+		</location>
+		<location id="id7" x="34" y="68">
+		</location>
+		<location id="id8" x="34" y="-136">
+		</location>
+		<location id="id9" x="-170" y="-136">
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-212" y="-17">BappelC!</label>
+			<nail x="-136" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-144" y="51">CrepasseB?</label>
+			<nail x="-102" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-59" y="51">CappelB?</label>
+			<nail x="-34" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="9" y="0">BrepasseC!</label>
+			<nail x="0" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="17" y="-93">AappelB?</label>
+			<nail x="0" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-68" y="-144">BrepasseA!</label>
+			<nail x="-34" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-229" y="-85">ArepasseB?</label>
+			<nail x="-136" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="-136" y="-136">BappelA!</label>
+			<nail x="-102" y="-102"/>
+		</transition>
+	</template>
+	<template>
+		<name>PersonC</name>
+		<declaration>// Place local declarations here.
+int secret;</declaration>
+		<location id="id10" x="-68" y="-34">
+		</location>
+		<location id="id11" x="-170" y="68">
+		</location>
+		<location id="id12" x="34" y="68">
+		</location>
+		<location id="id13" x="34" y="-136">
+		</location>
+		<location id="id14" x="-170" y="-136">
+		</location>
+		<init ref="id10"/>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="-212" y="-17">BappelC?</label>
+			<nail x="-136" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="-144" y="51">CrepasseB!</label>
+			<nail x="-102" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id12"/>
+			<label kind="synchronisation" x="-59" y="51">CappelB!</label>
+			<nail x="-34" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="9" y="0">BrepasseC?</label>
+			<nail x="0" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id13"/>
+			<label kind="synchronisation" x="17" y="-93">AappelC?</label>
+			<nail x="0" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="-68" y="-144">CrepasseA!</label>
+			<nail x="-34" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="-229" y="-85">ArepasseC?</label>
+			<nail x="-136" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-136" y="-136">CappelA!</label>
+			<nail x="-102" y="-102"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+A = PersonA();
+B = PersonB();
+C = PersonC();
+// List one or more processes to be composed into a system.
+system A, B, C;
+    </system>
+	<queries>
+	</queries>
+</nta>

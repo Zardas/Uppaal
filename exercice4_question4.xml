@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+int tampon;
+const int nbGirls = 4;
+typedef int[0,nbGirls-1] girl;
+bool canCall = true;
+
+chan appel, reponse;
+clock x;</declaration>
+	<template>
+		<name x="5" y="5">Girl</name>
+		<parameter>const girl num</parameter>
+		<declaration>// Place local declarations here.
+int secret = 1 &lt;&lt; num; //Décalage binaire
+
+void read() {
+    secret = tampon | secret;
+}
+void write() {
+    tampon = secret;
+}</declaration>
+		<location id="id0" x="68" y="-136">
+		</location>
+		<location id="id1" x="-136" y="102">
+			<label kind="invariant" x="-204" y="94">x &lt;= 5</label>
+		</location>
+		<location id="id2" x="272" y="102">
+			<label kind="invariant" x="297" y="94">x &lt;= 5</label>
+		</location>
+		<location id="id3" x="68" y="102">
+			<label kind="invariant" x="42" y="51">x &lt;= 8</label>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="178" y="-178">appel!</label>
+			<label kind="assignment" x="178" y="-161">write(), x=0</label>
+			<nail x="272" y="-136"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-119" y="-178">appel?</label>
+			<label kind="assignment" x="-119" y="-161">read(), x=0</label>
+			<nail x="-136" y="-136"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-195" y="154">x &gt;= 5</label>
+			<label kind="synchronisation" x="-204" y="170">reponse!</label>
+			<label kind="assignment" x="-187" y="187">write()</label>
+			<nail x="-136" y="204"/>
+			<nail x="0" y="204"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-93" y="59">appel?</label>
+			<label kind="assignment" x="-93" y="76">read(), x=0</label>
+			<nail x="-34" y="102"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="guard" x="280" y="153">x &gt;= 5</label>
+			<label kind="synchronisation" x="280" y="170">reponse?</label>
+			<label kind="assignment" x="280" y="187">read()</label>
+			<nail x="272" y="204"/>
+			<nail x="136" y="204"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="136" y="59">appel!</label>
+			<label kind="assignment" x="136" y="76">write(), x=0</label>
+			<nail x="178" y="102"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+//Process = Girl();
+// List one or more processes to be composed into a system.
+system Girl;
+    </system>
+	<queries>
+		<query>
+			<formula>E&lt;&gt;forall(x: girl) Girl(x).secret == ((1 &lt;&lt; nbGirls)-1 )
+			</formula>
+			<comment>
+			</comment>
+		</query>
+	</queries>
+</nta>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+int tampon;
+
+chan AappelB, AappelC;
+chan BappelA, BappelC;
+chan CappelA, CappelB;
+chan ArepasseB, ArepasseC;
+chan BrepasseA, BrepasseC;
+chan CrepasseA, CrepasseB;</declaration>
+	<template>
+		<name x="5" y="5">PersonA</name>
+		<declaration>// Place local declarations here.
+int secret = 1; //001 en binaire</declaration>
+		<location id="id0" x="-578" y="-204">
+		</location>
+		<location id="id1" x="-578" y="136">
+		</location>
+		<location id="id2" x="-238" y="136">
+		</location>
+		<location id="id3" x="-238" y="-204">
+		</location>
+		<location id="id4" x="-408" y="-34">
+		</location>
+		<init ref="id4"/>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-552" y="-17">CappelA?</label>
+			<label kind="assignment" x="-654" y="-34">secret = tampon | secret</label>
+			<nail x="-544" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-518" y="119">ArepasseC!</label>
+			<label kind="assignment" x="-518" y="136">tampon = secret</label>
+			<nail x="-476" y="102"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-374" y="110">AappelC!</label>
+			<label kind="assignment" x="-374" y="127">tampon = secret</label>
+			<nail x="-340" y="102"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-263" y="25">CrepasseA?</label>
+			<label kind="assignment" x="-263" y="8">secret = tampon | secret</label>
+			<nail x="-272" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-238" y="-127">AappelB!</label>
+			<label kind="assignment" x="-246" y="-110">tampon = secret</label>
+			<nail x="-272" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-340" y="-221">BrepasseA?</label>
+			<label kind="assignment" x="-348" y="-238">secret = tampon | secret</label>
+			<nail x="-340" y="-170"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-620" y="-93">ArepasseB!</label>
+			<label kind="assignment" x="-663" y="-110">tampon = secret</label>
+			<nail x="-544" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-501" y="-204">BappelA?</label>
+			<label kind="assignment" x="-552" y="-221">secret = tampon | secret</label>
+			<nail x="-476" y="-170"/>
+		</transition>
+	</template>
+	<template>
+		<name>PersonB</name>
+		<declaration>// Place local declarations here.
+int secret = 2; //010 en binaire</declaration>
+		<location id="id5" x="-68" y="-34">
+		</location>
+		<location id="id6" x="-238" y="136">
+		</location>
+		<location id="id7" x="102" y="136">
+		</location>
+		<location id="id8" x="102" y="-204">
+		</location>
+		<location id="id9" x="-238" y="-204">
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-238" y="17">BappelC!</label>
+			<label kind="assignment" x="-289" y="-8">tampon = secret</label>
+			<nail x="-170" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-212" y="119">CrepasseB?</label>
+			<label kind="assignment" x="-204" y="136">secret = tampon | secret</label>
+			<nail x="-136" y="68"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-34" y="93">CappelB?</label>
+			<label kind="assignment" x="-102" y="110">secret = tampon | secret</label>
+			<nail x="8" y="68"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="76" y="51">BrepasseC!</label>
+			<label kind="assignment" x="76" y="68">tampon = secret</label>
+			<nail x="34" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="85" y="-153">AappelB?</label>
+			<label kind="assignment" x="85" y="-170">secret = tampon | secret</label>
+			<nail x="34" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-34" y="-187">BrepasseA!</label>
+			<label kind="assignment" x="-34" y="-204">tampon = secret</label>
+			<nail x="0" y="-136"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-289" y="-136">ArepasseB?</label>
+			<label kind="assignment" x="-382" y="-119">secret = tampon | secret</label>
+			<nail x="-170" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="-170" y="-187">BappelA!</label>
+			<label kind="assignment" x="-170" y="-204">tampon = secret</label>
+			<nail x="-136" y="-136"/>
+		</transition>
+	</template>
+	<template>
+		<name>PersonC</name>
+		<declaration>// Place local declarations here.
+int secret = 4; //100 en binaire</declaration>
+		<location id="id10" x="-68" y="-34">
+		</location>
+		<location id="id11" x="-272" y="136">
+		</location>
+		<location id="id12" x="102" y="136">
+		</location>
+		<location id="id13" x="102" y="-204">
+		</location>
+		<location id="id14" x="-238" y="-204">
+		</location>
+		<init ref="id10"/>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="-297" y="59">BappelC?</label>
+			<label kind="assignment" x="-408" y="42">secret = tampon | secret</label>
+			<nail x="-136" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="-195" y="102">CrepasseB!</label>
+			<label kind="assignment" x="-195" y="119">tampon = secret</label>
+			<nail x="-102" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id12"/>
+			<label kind="synchronisation" x="-34" y="85">CappelB!</label>
+			<label kind="assignment" x="-42" y="102">tampon = secret</label>
+			<nail x="-34" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="59" y="51">BrepasseC?</label>
+			<label kind="assignment" x="51" y="34">secret = tampon | secret</label>
+			<nail x="0" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id13"/>
+			<label kind="synchronisation" x="76" y="-153">AappelC?</label>
+			<label kind="assignment" x="76" y="-136">secret = tampon | secret</label>
+			<nail x="0" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="-8" y="-204">CrepasseA!</label>
+			<label kind="assignment" x="-42" y="-221">tampon = secret</label>
+			<nail x="-34" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="-280" y="-144">ArepasseC?</label>
+			<label kind="assignment" x="-365" y="-127">secret = tampon | secret</label>
+			<nail x="-136" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-170" y="-195">CappelA!</label>
+			<label kind="assignment" x="-170" y="-178">tampon = secret</label>
+			<nail x="-102" y="-102"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+A = PersonA();
+B = PersonB();
+C = PersonC();
+// List one or more processes to be composed into a system.
+system A, B, C;
+    </system>
+	<queries>
+		<query>
+			<formula>E&lt;&gt;(A.secret == 7 &amp;&amp; B.secret == 7 &amp;&amp; C.secret == 7)
+			</formula>
+			<comment>
+			</comment>
+		</query>
+	</queries>
+</nta>
